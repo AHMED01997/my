@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">IslamicQuize</string>
+    <string name="quistion_is_here">quistion is here</string>
+    <string name="answer_1">answer 1</string>
+    <string name="ok">ok</string>
+    <string name="answer_4">answer 4</string>
+    <string name="answer_3">answer 3</string>
+    <string name="answer_2">answer 2</string>
+    <string name="selected_tobic_name">Selected Tobic Name</string>
+    <string name="_1_10">1/10</string>
+    <string name="congrateulation">Congrateulation</string>
+    <string name="incorrectanswer">InCorrectAnswer</string>
+    <string name="correct_answer">Correct Answer</string>
+    <string name="start_new_quize">Start New Quize</string>
+    <string name="java">Java</string>
+    <string name="java_2">Java 2</string>
+    <string name="java_3">Java 3</string>
+    <string name="java_4">Java 4</string>
+    <string name="start">start</string>
+</resources>
