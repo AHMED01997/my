@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddQuestionActivity extends AppCompatActivity {
+    private QuistionDatabaseHelper dbHelper;
     QuistionDatabaseHelper db = new QuistionDatabaseHelper(this);
 
 ArrayList getAllRecord;
@@ -30,6 +31,13 @@ ArrayList getAllRecord;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_question);
+        dbHelper = new QuistionDatabaseHelper(this);
+
+
+
+
+
+
         questionEditText = findViewById(R.id.questionEditText);
         option1EditText = findViewById(R.id.option1EditText);
         option2EditText = findViewById(R.id.option2EditText);
@@ -43,33 +51,22 @@ ArrayList getAllRecord;
             public void onClick(View v) {
 
 
-                String quistion = questionEditText.getText().toString();
-                String op1 = option1EditText.getText().toString();
-                String op2 = option2EditText.getText().toString();
-                String op3 = option3EditText.getText().toString();
-                String op4 = option4EditText.getText().toString();
+                String question = questionEditText.getText().toString();
                 String answer = answerEditText.getText().toString();
-               boolean result = db.insertData(quistion,op1,op2,op3,op4,answer);
-               if(result==true){Toast.makeText(AddQuestionActivity.this, "Question added successfully", Toast.LENGTH_SHORT).show();
-                   questionEditText.setText("");
-                   option1EditText.setText("");
-                   option2EditText.setText("");
-                   option3EditText.setText("");
-                   option4EditText.setText("");
-                   answerEditText.setText("");
 
+                // Insert the new question into the database
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
+                ContentValues values = new ContentValues();
+                values.put(QuistionDatabaseHelper.COLUMN_QUESTION_TEXT, question);
+                values.put(QuistionDatabaseHelper.COLUMN_ANSWER_TEXT, answer);
+                long newRowId = db.insert(QuistionDatabaseHelper.TABLE_USER_QUESTIONS, null, values);
 
-               }
-               else {Toast.makeText(AddQuestionActivity.this, "Question added Failllled", Toast.LENGTH_SHORT).show();}
-
-
-
-
-
-                finish();
+                // Display a success message and clear the text fields
+                Toast.makeText(AddQuestionActivity.this, "Question added successfully!", Toast.LENGTH_SHORT).show();
+                questionEditText.setText("");
+                answerEditText.setText("");
             }
-        });
-    }
+        });}
 
     private void saveQuestion(QuistionList question) {
         // Save the question to the database
