@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class QuistionBank {
-    private static List<QuistionList> javaQuistion(){
+ private static List<QuistionList> javaQuistion(){
         final List<QuistionList> quistionList= new ArrayList<>();
         final QuistionList quistion1=new QuistionList("معنى المعصرات","السحب","البحار","المطر", "الرعد","السحب","");
         final QuistionList quistion2=new QuistionList("معنى الطلح","التفاح","الموز","الكرز", "الوسائد","الموز","");
@@ -61,7 +61,6 @@ public class QuistionBank {
 
 
 
-
     public static List<QuistionList>getQuistion (String selectedTobicName){
         switch (selectedTobicName){case "java":
             return javaQuistion();
@@ -86,4 +85,7 @@ public class QuistionBank {
 
 
 
-    }}
+    }
+
+    }
+
