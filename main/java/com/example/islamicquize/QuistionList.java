@@ -18,7 +18,10 @@ public class QuistionList {
 
 
 
-
+    public void setquistion(String quistion)
+    {
+        this.quistion = quistion;
+    }
     public void setOp1(String op1)
     {
         this.op1 = op1;
