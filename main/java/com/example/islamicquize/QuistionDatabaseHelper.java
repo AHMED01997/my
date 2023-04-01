@@ -43,7 +43,7 @@ public QuistionDatabaseHelper(Context context) {
         public ArrayList <QuistionList> getData(){
     ArrayList<QuistionList> arrayList =new ArrayList();
     SQLiteDatabase s =this.getReadableDatabase();
-            Cursor c =s.rawQuery("select*from Quiz",null);
+            Cursor c =s.rawQuery("select*from Quize",null);
             c.moveToFirst();
 
             while(c.isAfterLast()==false){
