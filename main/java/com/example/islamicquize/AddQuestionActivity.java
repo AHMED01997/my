@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddQuestionActivity extends AppCompatActivity {
-    private QuistionDatabaseHelper dbHelper;
-    QuistionDatabaseHelper db = new QuistionDatabaseHelper(this);
+
+    QuistionDatabaseHelper obj = new QuistionDatabaseHelper(this);
 
 ArrayList getAllRecord;
     private EditText questionEditText;
@@ -31,8 +31,8 @@ ArrayList getAllRecord;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_question);
-        dbHelper = new QuistionDatabaseHelper(this);
-
+    //String n=   obj.isertData("","","","","","","");
+ArrayList<QuistionList>d=obj.getData();
 
 
 
@@ -46,29 +46,30 @@ ArrayList getAllRecord;
         answerEditText = findViewById(R.id.answerEditText);
         submitButton = findViewById(R.id.submitButton);
 
-        submitButton.setOnClickListener(new View.OnClickListener() {
+       submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                d.get(0).setquistion(questionEditText.getText().toString());
+                d.get(0).setOp1(option1EditText.getText().toString());
+                d.get(0).setOp2(option2EditText.getText().toString());
+                d.get(0).setOp3(option3EditText.getText().toString());
+                d.get(0).setOp4(option4EditText.getText().toString());
+                d.get(0).setAnswer(answerEditText.getText().toString());
+                d.get(0).setquistion(questionEditText.getText().toString());
+                d.get(0).setUserSelectedAnswer("");
 
 
-                String question = questionEditText.getText().toString();
-                String answer = answerEditText.getText().toString();
-
-                // Insert the new question into the database
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
-                ContentValues values = new ContentValues();
-                values.put(QuistionDatabaseHelper.COLUMN_QUESTION_TEXT, question);
-                values.put(QuistionDatabaseHelper.COLUMN_ANSWER_TEXT, answer);
-                long newRowId = db.insert(QuistionDatabaseHelper.TABLE_USER_QUESTIONS, null, values);
 
                 // Display a success message and clear the text fields
-                Toast.makeText(AddQuestionActivity.this, "Question added successfully!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddQuestionActivity.this, "done" ,Toast.LENGTH_SHORT).show();
                 questionEditText.setText("");
                 answerEditText.setText("");
             }
-        });}
+        });
+        }
 
-    private void saveQuestion(QuistionList question) {
+
+  /*  private void saveQuestion(QuistionList question) {
         // Save the question to the database
         // You can use a database like SQLite to store the data
         QuistionDatabaseHelper dbHelper = new QuistionDatabaseHelper(this);
@@ -85,5 +86,16 @@ ArrayList getAllRecord;
         db.insert("quistions", null, values);
         db.close();
     }
+    private void addQuestion() {
+        // Get the question and answer text from the EditText views
+        String questionText = questionEditText.getText().toString();
+        String answerText = answerEditText.getText().toString();
+
+        // Get an instance of the database helper
+        QuistionDatabaseHelper dbHelper = new QuistionDatabaseHelper(this);
+
+        // Insert the new question into the database
+
+    }*/
 }
 
