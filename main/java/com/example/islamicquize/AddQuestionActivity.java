@@ -49,21 +49,10 @@ ArrayList<QuistionList>d=obj.getData();
        submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                d.get(0).setquistion(questionEditText.getText().toString());
-                d.get(0).setOp1(option1EditText.getText().toString());
-                d.get(0).setOp2(option2EditText.getText().toString());
-                d.get(0).setOp3(option3EditText.getText().toString());
-                d.get(0).setOp4(option4EditText.getText().toString());
-                d.get(0).setAnswer(answerEditText.getText().toString());
-                d.get(0).setquistion(questionEditText.getText().toString());
-                d.get(0).setUserSelectedAnswer("");
+addQuistion();
 
+         // Display a success message and clear the text fields
 
-
-                // Display a success message and clear the text fields
-                Toast.makeText(AddQuestionActivity.this, "done" ,Toast.LENGTH_SHORT).show();
-                questionEditText.setText("");
-                answerEditText.setText("");
             }
         });
         }
@@ -85,17 +74,31 @@ ArrayList<QuistionList>d=obj.getData();
 
         db.insert("quistions", null, values);
         db.close();
-    }
-    private void addQuestion() {
-        // Get the question and answer text from the EditText views
-        String questionText = questionEditText.getText().toString();
-        String answerText = answerEditText.getText().toString();
-
-        // Get an instance of the database helper
-        QuistionDatabaseHelper dbHelper = new QuistionDatabaseHelper(this);
-
-        // Insert the new question into the database
-
     }*/
+  public void addQuistion() {
+      // Get the values of the new question from the user input
+      String quistion = questionEditText.getText().toString();
+      String op1 = option1EditText.getText().toString();
+      String op2 = option2EditText.getText().toString();
+      String op3 = option3EditText.getText().toString();
+      String op4 = option4EditText.getText().toString();
+      String answer = answerEditText.getText().toString();
+      String userSelectedAnswer = "";
+
+      // Call the insertData method to insert the new question into the Quiz table
+      String result = obj.insertData(quistion, op1, op2, op3, op4, answer, userSelectedAnswer);
+      if (result.equals("ok done")) {
+          Toast.makeText(this, "Question added successfully", Toast.LENGTH_SHORT).show();
+          // Clear the user input fields
+          questionEditText.setText("");
+          option1EditText.setText("");
+          option2EditText.setText("");
+          option3EditText.setText("");
+          option4EditText.setText("");
+          answerEditText.setText("");
+      } else {
+          Toast.makeText(this, "Question not added", Toast.LENGTH_SHORT).show();
+      }
+  }
 }
 
